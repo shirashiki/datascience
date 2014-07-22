@@ -76,3 +76,15 @@ restData[restData$zipCode %in% c("21212","21213"),]
 restData$zipf <- factor(restData$zipCode)
 restData$zipf[1:10]
 
+
+## Reshaping data
+
+library(reshape2)
+head(mtcars)
+
+mtcars$carname <- rownames(mtcars)
+carMelt <- melt(mtcars,id=c("carname","gear","cyl"),measure.vars=c("mpg","hp"))
+head(carMelt,n=3)
+
+# the melt function puts data in a key/value format
+carMelt[carMelt$carname=="Mazda RX4",]
