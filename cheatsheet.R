@@ -13,6 +13,18 @@ is.numeric(myVector[4])
 is.na(myVector[4])
 
 
+#Creating sequences
+s1 <- seq(1,10,by=2) ; s1
+# result: [1] 1 3 5 7 9
+s2 <- seq(1,10,length=3); s2
+#result: [1]  1.0  5.5 10.0
+
+x <- c(1,3,8,25,100); seq(along = x)
+# creates a sequence aligned with vector x: [1] 1 2 3 4 5
+
+
+
+
 # Download data from external source
 # https://data.baltimorecity.gov/Community/Restaurants/k5ry-ef3g
 if(!file.exists("./data")){
@@ -27,6 +39,9 @@ restData <- read.csv("./data/restaurants.csv")
 # display structure of the object
 str(restData)
 
+# gets object size
+object.size(restData)
+print(object.size(restData), units="Mb")
 
 # shows beginning and end of the dataset
 head(restData,n=3)
@@ -52,4 +67,12 @@ sqldf("select count(*) as count_not from restData where zipCode not in ('21212',
 
 # filter the data
 restData[restData$zipCode %in% c("21212","21213"),]
+
+
+
+## creating some variables and adding to data frame
+
+# converts zipCode column to factor and adds to data frame 
+restData$zipf <- factor(restData$zipCode)
+restData$zipf[1:10]
 
