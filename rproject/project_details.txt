@@ -1,0 +1,20 @@
+Project details
+
+1   Merges the training and the test sets to create one data set.
+2   Extracts only the measurements on the mean and standard deviation for each measurement. 
+3   Uses descriptive activity names to name the activities in the data set
+4   Appropriately labels the data set with descriptive variable names. 
+5   Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+
+
+Files to join are:
+
+- 'train/X_train.txt': Training set.
+- 'test/X_test.txt': Test set.
+
+Facts
+- data sets have 561 columns, as described in features.txt
+- Each column has size 15 (signal + number ), separator is a space
+
+
+
