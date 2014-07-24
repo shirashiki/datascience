@@ -42,8 +42,8 @@ working directory (Task 5)
 
 Notes:
 
-- The submission tidy dataset id aggregate and ordered by Activity and Subject, 
-in this order
+- The submission tidy dataset is aggregated and ordered by Activity and Subject, 
+in this order.
 - For task 2 (Extracts only the measurements on the mean and standard deviation 
 for each measurement), I kept only variables related to mean() and std(), as
 described in features_info.txt.
@@ -63,6 +63,6 @@ The script will generate 2 files. The file to be submitted will have the name
 SubmissionTidyData.txt.
 
 The file contains 180 rows, related to 6 activities X 30 subjects. See the 
-Codebook for file details
+Codebook for file details.
 
 
