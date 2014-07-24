@@ -70,6 +70,7 @@ projectTasks <- function() {
     colnames(features)[2] = "FeatureName"
     
     # defines features to keep, matching -mean() and -std()
+    # according to instructions in features_info.txt
     keeps <- grep("*-mean\\(|-std\\(*", features[,2])
     
     # Loads activity labels
@@ -165,7 +166,72 @@ projectTasks <- function() {
     allData <- allData[,!(names(allData) %in% drops)]
     
     # Renames columns setting descriptive names
-    ## ZZZZZZZZZZZ
+    names(allData)[names(allData)=="tBodyAcc-mean()-X"] <- "BodyAcc_Mean_AxisX"
+    names(allData)[names(allData)=="tBodyAcc-mean()-Y"] <- "BodyAcc_Mean_AxisY"
+    names(allData)[names(allData)=="tBodyAcc-mean()-Z"] <- "BodyAcc_Mean_AxisZ"
+    names(allData)[names(allData)=="tBodyAcc-std()-X"] <- "BodyAcc_StDeviation_AxisX"
+    names(allData)[names(allData)=="tBodyAcc-std()-Y"] <- "BodyAcc_StDeviation_AxisY"
+    names(allData)[names(allData)=="tBodyAcc-std()-Z"] <- "BodyAcc_StDeviation_AxisZ"
+    names(allData)[names(allData)=="tGravityAcc-mean()-X"] <- "GravityAcc_Mean_AxisX"
+    names(allData)[names(allData)=="tGravityAcc-mean()-Y"] <- "GravityAcc_Mean_AxisY"
+    names(allData)[names(allData)=="tGravityAcc-mean()-Z"] <- "GravityAcc_Mean_AxisZ"
+    names(allData)[names(allData)=="tGravityAcc-std()-X"] <- "GravityAcc_StDeviation_AxisX"
+    names(allData)[names(allData)=="tGravityAcc-std()-Y"] <- "GravityAcc_StDeviation_AxisY"
+    names(allData)[names(allData)=="tGravityAcc-std()-Z"] <- "GravityAcc_StDeviation_AxisZ"
+    names(allData)[names(allData)=="tBodyAccJerk-mean()-X"] <- "BodyAccJerk_Mean_AxisX"
+    names(allData)[names(allData)=="tBodyAccJerk-mean()-Y"] <- "BodyAccJerk_Mean_AxisY"
+    names(allData)[names(allData)=="tBodyAccJerk-mean()-Z"] <- "BodyAccJerk_Mean_AxisZ"
+    names(allData)[names(allData)=="tBodyAccJerk-std()-X"] <- "BodyAccJerk_StDeviation_AxisX"
+    names(allData)[names(allData)=="tBodyAccJerk-std()-Y"] <- "BodyAccJerk_StDeviation_AxisY"
+    names(allData)[names(allData)=="tBodyAccJerk-std()-Z"] <- "BodyAccJerk_StDeviation_AxisZ"
+    names(allData)[names(allData)=="tBodyGyro-mean()-X"] <- "BodyGyro_Mean_AxisX"
+    names(allData)[names(allData)=="tBodyGyro-mean()-Y"] <- "BodyGyro_Mean_AxisY"
+    names(allData)[names(allData)=="tBodyGyro-mean()-Z"] <- "BodyGyro_Mean_AxisZ"
+    names(allData)[names(allData)=="tBodyGyro-std()-X"] <- "BodyGyro_StDeviation_AxisX"
+    names(allData)[names(allData)=="tBodyGyro-std()-Y"] <- "BodyGyro_StDeviation_AxisY"
+    names(allData)[names(allData)=="tBodyGyro-std()-Z"] <- "BodyGyro_StDeviation_AxisZ"
+    names(allData)[names(allData)=="tBodyGyroJerk-mean()-X"] <- "BodyGyroJerk_Mean_AxisX"
+    names(allData)[names(allData)=="tBodyGyroJerk-mean()-Y"] <- "BodyGyroJerk_Mean_AxisY"
+    names(allData)[names(allData)=="tBodyGyroJerk-mean()-Z"] <- "BodyGyroJerk_Mean_AxisZ"
+    names(allData)[names(allData)=="tBodyGyroJerk-std()-X"] <- "BodyGyroJerk_StDeviation_AxisX"
+    names(allData)[names(allData)=="tBodyGyroJerk-std()-Y"] <- "BodyGyroJerk_StDeviation_AxisY"
+    names(allData)[names(allData)=="tBodyGyroJerk-std()-Z"] <- "BodyGyroJerk_StDeviation_AxisZ"
+    names(allData)[names(allData)=="tBodyAccMag-mean()"] <- "BodyAccMag_Mean"
+    names(allData)[names(allData)=="tBodyAccMag-std()"] <- "BodyAccMag_StDeviation"
+    names(allData)[names(allData)=="tGravityAccMag-mean()"] <- "GravityAccMag_Mean"
+    names(allData)[names(allData)=="tGravityAccMag-std()"] <- "GravityAccMag_StDeviation"
+    names(allData)[names(allData)=="tBodyAccJerkMag-mean()"] <- "BodyAccJerkMag_Mean"
+    names(allData)[names(allData)=="tBodyAccJerkMag-std()"] <- "BodyAccJerkMag_StDeviation"
+    names(allData)[names(allData)=="tBodyGyroMag-mean()"] <- "BodyGyroMag_Mean"
+    names(allData)[names(allData)=="tBodyGyroMag-std()"] <- "BodyGyroMag_StDeviation"
+    names(allData)[names(allData)=="tBodyGyroJerkMag-mean()"] <- "BodyGyroJerkMag_Mean"
+    names(allData)[names(allData)=="tBodyGyroJerkMag-std()"] <- "BodyGyroJerkMag_StDeviation"
+    names(allData)[names(allData)=="fBodyAcc-mean()-X"] <- "BodyAcc_Mean_AxisX"
+    names(allData)[names(allData)=="fBodyAcc-mean()-Y"] <- "BodyAcc_Mean_AxisY"
+    names(allData)[names(allData)=="fBodyAcc-mean()-Z"] <- "BodyAcc_Mean_AxisZ"
+    names(allData)[names(allData)=="fBodyAcc-std()-X"] <- "BodyAcc_StDeviation_AxisX"
+    names(allData)[names(allData)=="fBodyAcc-std()-Y"] <- "BodyAcc_StDeviation_AxisY"
+    names(allData)[names(allData)=="fBodyAcc-std()-Z"] <- "BodyAcc_StDeviation_AxisZ"
+    names(allData)[names(allData)=="fBodyAccJerk-mean()-X"] <- "BodyAccJerk_Mean_AxisX"
+    names(allData)[names(allData)=="fBodyAccJerk-mean()-Y"] <- "BodyAccJerk_Mean_AxisY"
+    names(allData)[names(allData)=="fBodyAccJerk-mean()-Z"] <- "BodyAccJerk_Mean_AxisZ"
+    names(allData)[names(allData)=="fBodyAccJerk-std()-X"] <- "BodyAccJerk_StDeviation_AxisX"
+    names(allData)[names(allData)=="fBodyAccJerk-std()-Y"] <- "BodyAccJerk_StDeviation_AxisY"
+    names(allData)[names(allData)=="fBodyAccJerk-std()-Z"] <- "BodyAccJerk_StDeviation_AxisZ"
+    names(allData)[names(allData)=="fBodyGyro-mean()-X"] <- "BodyGyro_Mean_AxisX"
+    names(allData)[names(allData)=="fBodyGyro-mean()-Y"] <- "BodyGyro_Mean_AxisY"
+    names(allData)[names(allData)=="fBodyGyro-mean()-Z"] <- "BodyGyro_Mean_AxisZ"
+    names(allData)[names(allData)=="fBodyGyro-std()-X"] <- "BodyGyro_StDeviation_AxisX"
+    names(allData)[names(allData)=="fBodyGyro-std()-Y"] <- "BodyGyro_StDeviation_AxisY"
+    names(allData)[names(allData)=="fBodyGyro-std()-Z"] <- "BodyGyro_StDeviation_AxisZ"
+    names(allData)[names(allData)=="fBodyAccMag-mean()"] <- "BodyAccMag_Mean"
+    names(allData)[names(allData)=="fBodyAccMag-std()"] <- "BodyAccMag_StDeviation"
+    names(allData)[names(allData)=="fBodyBodyAccJerkMag-mean()"] <- "BodyBodyAccJerkMag_Mean"
+    names(allData)[names(allData)=="fBodyBodyAccJerkMag-std()"] <- "BodyBodyAccJerkMag_StDeviation"
+    names(allData)[names(allData)=="fBodyBodyGyroMag-mean()"] <- "BodyBodyGyroMag_Mean"
+    names(allData)[names(allData)=="fBodyBodyGyroMag-std()"] <- "BodyBodyGyroMag_StDeviation"
+    names(allData)[names(allData)=="fBodyBodyGyroJerkMag-mean()"] <- "BodyBodyGyroJerkMag_Mean"
+    names(allData)[names(allData)=="fBodyBodyGyroJerkMag-std()"] <- "BodyBodyGyroJerkMag_StDeviation"
     
     
     # Writes the tidy dataset
@@ -195,8 +261,6 @@ projectTasks <- function() {
     # Sorts by Activity and Subject
     summaryData <- summaryData[with(summaryData, 
                                     order(ActivityName, Subject)), ]
-    #drops <- c("row.names")
-    #summaryData <- summaryData[,!(names(summaryData) %in% drops)]
     
     # Writes the Second tidy dataset. This is the one I am submitting
     write.table(summaryData, file="./SubmissionTidyData.txt",
