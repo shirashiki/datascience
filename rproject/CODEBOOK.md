@@ -8,6 +8,7 @@ subject.
 ### Variables
 
 **What was changed in variable names**
+
 The variable names where based on the ones in the raw files. The following 
 changes were applied in order to make the variable name more legible:
 
@@ -22,7 +23,7 @@ changes were applied in order to make the variable name more legible:
 
 Here is a list of the original and the new variable names
 
-Variable Name | Original Variable name in raw file
+Variable Name | Original variable name in raw file
 ------------- | ----------------------------------
 BodyAcc_Mean_AxisX | tBodyAcc-mean()-X
 BodyAcc_Mean_AxisY | tBodyAcc-mean()-Y

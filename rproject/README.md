@@ -56,6 +56,7 @@ source("run_analysis.R")
 The script will generate 2 files. The file to be submitted will have the name 
 SubmissionTidyData.txt.
 
-The file contains 180 rows, related to 6 activities X 30 subjects.
+The file contains 180 rows, related to 6 activities X 30 subjects. See the 
+Codebook for file details
 
 
