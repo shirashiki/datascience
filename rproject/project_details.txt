@@ -17,4 +17,7 @@ Facts
 - Each column has size 15 (signal + number ), separator is a space
 
 
+Check:
 
+A layout of the filan file (there is a figure there)
+https://class.coursera.org/getdata-005/forum/thread?thread_id=23

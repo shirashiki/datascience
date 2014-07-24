@@ -10,160 +10,163 @@
 # 5     Creates a second, independent tidy data set with the average of each 
 #       variable for each activity and each subject. 
 
+projectTasks <- function() {
+    ## ---------------------------------------------------------------
+    ## Preparation steps
+    
+    # Check if the required files exists
+    if (!file.exists("./UCI HAR Dataset/features.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/features.txt not found.")
+    }
+    
+    if (!file.exists("./UCI HAR Dataset/activity_labels.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/activity_labels.txt not found.")
+    }
+    
+    
+    if (!file.exists("./UCI HAR Dataset/test/X_test.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/test/X_test.txt not found.")
+    }
+    
+    if (!file.exists("./UCI HAR Dataset/test/y_test.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/test/y_test.txt not found.")
+    }
+    
+    if (!file.exists("./UCI HAR Dataset/train/X_train.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/train/X_train.txt not found.")
+    }
+    
+    if (!file.exists("./UCI HAR Dataset/train/y_train.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/train/y_train.txt not found.")
+    }
+    
+    
+    
+    if (!file.exists("./UCI HAR Dataset/test/subject_test.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/test/subject_test not found.")
+    }
+    
+    if (!file.exists("./UCI HAR Dataset/train/subject_train.txt")) {
+        stop("Check if the data is in your working directory. 
+                File ./UCI HAR Dataset/train/subject_train.txt not found.")
+    }
+    
+    ## ---------------------------------------------------------------
+    ## Loads training and test sets
+    ## Here I load and adjust Training and Test Data
+    
+    # Loads features
+    features <- read.table(file="./UCI HAR Dataset/features.txt",
+                         header=FALSE, sep="")
+    
+    # defines features to keep
+    keeps <- grep("*-mean|-std*", features[,2])
+    
+    # puts meaningful column names
+    colnames(features)[1] = "FeaturePosition"
+    colnames(features)[2] = "FeatureName"
+    
+    
+    # Loads activity labels
+    activityLabels <- read.table(file="./UCI HAR Dataset/activity_labels.txt",
+                           header=FALSE, sep="")
+    # puts meaningful column names
+    colnames(activityLabels)[1] = "ActivityID"
+    colnames(activityLabels)[2] = "ActivityName"
+    
+    
+    ##-----  Prepares Training data
+    # Loads Training labels
+    trainingLabels <- read.table(file="./UCI HAR Dataset/train/y_train.txt",
+                           header=FALSE, sep="")
+    colnames(trainingLabels)[1] <- "ID"
+    
+    # Merges activity and training labels
+    trainingActivities <- merge(trainingLabels, activityLabels, by.x="ID",
+                                by.y="ActivityID", all=TRUE)
+    
+    # Loads Training Set
+    trainingSet <- read.table(file="./UCI HAR Dataset/train/X_train.txt",
+                          header=FALSE, sep="")
+    
+    # Renames the columns in the Training set using the labels
+    # in the feature.txt file
+    colnames(trainingSet) <- features$FeatureName
+    
+    # Keeps only the columns related to mean and standard deviation
+    trainingSet <- trainingSet[,keeps]
+    
+    # Loads subjects
+    trainingSubjects <- read.table(file="./UCI HAR Dataset/train/subject_train.txt",
+                                 header=FALSE, sep="")
+    colnames(trainingSubjects)[1] <- "Subject"
+    
+    # Merges to add subject information
+    trainingSet <- cbind(trainingSubjects, trainingSet)
+    
+    # Merges to name each activity in the data set
+    trainingSet <- cbind(trainingActivities, trainingSet)
+    
+    # Adds the name of the set, so we can merge Training and Test later
+    SetName = rep("Training Set", nrow(trainingSet))
+    trainingSet <- cbind(SetName, trainingSet)
+    
+    
+    
+    ##-----  Prepares Test data
+    # Loads Test labels
+    testLabels <- read.table(file="./UCI HAR Dataset/test/y_test.txt",
+                                 header=FALSE, sep="")
+    colnames(testLabels)[1] <- "ID"
+    
+    # Merges activity and training labels
+    testActivities <- merge(testLabels, activityLabels, by.x="ID",
+                                by.y="ActivityID", all=TRUE)
+    
+    # Loads Test Set
+    testSet <- read.table(file="./UCI HAR Dataset/test/X_test.txt",
+                          header=FALSE, sep="")
+    
+    # Renames the columns in the Training set using the labels
+    # in the feature.txt file
+    colnames(testSet) <- features$FeatureName
+    
+    # Keeps only the columns related to mean and standard deviation
+    testSet <- testSet[,keeps]
+    
+    # Loads subjects
+    testSubjects <- read.table(file="./UCI HAR Dataset/test/subject_test.txt",
+                                   header=FALSE, sep="")
+    colnames(testSubjects)[1] <- "Subject"
+    
+    # Merges to add subject information
+    testSet <- cbind(testSubjects, testSet)
+    
+    # Merges to name each activity in the data set
+    testSet <- cbind(testActivities, testSet)
+    
+    # Adds the name of the set, so we can merge Training and Test later
+    SetName = rep("Test Set", nrow(testSet))
+    testSet <- cbind(SetName, testSet)
+    
+    
+    ## --- Merge to generate final data
+    ## At this point we have Training and Test data frames prepared
+    
+    allData <- rbind(trainingSet, testSet)
+    
+    #PENDING:
+    #- Need to add the subject for each one of the files
+    #- The final File has another format (see project desc item 5)
 
-## ---------------------------------------------------------------
-## Preparation steps
-
-# Check if the required files exists
-if (!file.exists("./UCI HAR Dataset/features.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/features.txt not found.")
 }
 
-if (!file.exists("./UCI HAR Dataset/activity_labels.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/activity_labels.txt not found.")
-}
-
-
-if (!file.exists("./UCI HAR Dataset/test/X_test.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/test/X_test.txt not found.")
-}
-
-if (!file.exists("./UCI HAR Dataset/test/y_test.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/test/y_test.txt not found.")
-}
-
-if (!file.exists("./UCI HAR Dataset/train/X_train.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/train/X_train.txt not found.")
-}
-
-if (!file.exists("./UCI HAR Dataset/train/y_train.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/train/y_train.txt not found.")
-}
-
-
-
-if (!file.exists("./UCI HAR Dataset/test/subject_test.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/test/subject_test not found.")
-}
-
-if (!file.exists("./UCI HAR Dataset/train/subject_train.txt")) {
-    stop("Check if the data is in your working directory. 
-            File ./UCI HAR Dataset/train/subject_train.txt not found.")
-}
-
-## ---------------------------------------------------------------
-## Loads training and test sets
-## Here I load and adjust Training and Test Data
-
-# Loads features
-features <- read.table(file="./UCI HAR Dataset/features.txt",
-                     header=FALSE, sep="")
-
-# defines features to keep
-keeps <- grep("*-mean|-std*", features[,2])
-
-# puts meaningful column names
-colnames(features)[1] = "FeaturePosition"
-colnames(features)[2] = "FeatureName"
-
-
-# Loads activity labels
-activityLabels <- read.table(file="./UCI HAR Dataset/activity_labels.txt",
-                       header=FALSE, sep="")
-# puts meaningful column names
-colnames(activityLabels)[1] = "ActivityID"
-colnames(activityLabels)[2] = "ActivityName"
-
-
-##-----  Prepares Training data
-# Loads Training labels
-trainingLabels <- read.table(file="./UCI HAR Dataset/train/y_train.txt",
-                       header=FALSE, sep="")
-colnames(trainingLabels)[1] <- "ID"
-
-# Merges activity and training labels
-trainingActivities <- merge(trainingLabels, activityLabels, by.x="ID",
-                            by.y="ActivityID", all=TRUE)
-
-# Loads Training Set
-trainingSet <- read.table(file="./UCI HAR Dataset/train/X_train.txt",
-                      header=FALSE, sep="")
-
-# Renames the columns in the Training set using the labels
-# in the feature.txt file
-colnames(trainingSet) <- features$FeatureName
-
-# Keeps only the columns related to mean and standard deviation
-trainingSet <- trainingSet[,keeps]
-
-# Loads subjects
-trainingSubjects <- read.table(file="./UCI HAR Dataset/train/subject_train.txt",
-                             header=FALSE, sep="")
-colnames(trainingSubjects)[1] <- "Subject"
-
-# Merges to add subject information
-trainingSet <- cbind(trainingSubjects, trainingSet)
-
-# Merges to name each activity in the data set
-trainingSet <- cbind(trainingActivities, trainingSet)
-
-# Adds the name of the set, so we can merge Training and Test later
-SetName = rep("Training Set", nrow(trainingSet))
-trainingSet <- cbind(SetName, trainingSet)
-
-
-
-##-----  Prepares Test data
-# Loads Test labels
-testLabels <- read.table(file="./UCI HAR Dataset/test/y_test.txt",
-                             header=FALSE, sep="")
-colnames(testLabels)[1] <- "ID"
-
-# Merges activity and training labels
-testActivities <- merge(testLabels, activityLabels, by.x="ID",
-                            by.y="ActivityID", all=TRUE)
-
-# Loads Test Set
-testSet <- read.table(file="./UCI HAR Dataset/test/X_test.txt",
-                      header=FALSE, sep="")
-
-# Renames the columns in the Training set using the labels
-# in the feature.txt file
-colnames(testSet) <- features$FeatureName
-
-# Keeps only the columns related to mean and standard deviation
-testSet <- testSet[,keeps]
-
-# Loads subjects
-testSubjects <- read.table(file="./UCI HAR Dataset/test/subject_test.txt",
-                               header=FALSE, sep="")
-colnames(testSubjects)[1] <- "Subject"
-
-# Merges to add subject information
-testSet <- cbind(testSubjects, testSet)
-
-# Merges to name each activity in the data set
-testSet <- cbind(testActivities, testSet)
-
-# Adds the name of the set, so we can merge Training and Test later
-SetName = rep("Test Set", nrow(testSet))
-testSet <- cbind(SetName, testSet)
-
-
-## --- Merge to generate final data
-## At this point we have Training and Test data frames prepared
-
-allData <- rbind(trainingSet, testSet)
-
-#PENDING:
-#- Need to add the subject for each one of the files
-#- The final File has another format (see project desc item 5)
-
-
+# Run the project tasks
+projectTasks()
