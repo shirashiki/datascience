@@ -162,13 +162,17 @@ projectTasks <- function() {
     
     allData <- rbind(trainingSet, testSet)
     
+    
+    ## need to tidy column names before generating final file
+    
     # ZZZZ CHECK THIS summary data frame
     sum_DF <- aggregate(allData, 
                         by=list(allData$Subject, allData$ActivityName),
                         FUN=mean, 
                         na.rm=TRUE)
     #PENDING:
-    #- Need to add the subject for each one of the files
+    # We have 30 subjects in total, so no need to use SetName. Use only
+    # subject to aggregate
     #- The final File has another format (see project desc item 5)
 
 }
