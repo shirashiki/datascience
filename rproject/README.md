@@ -1,31 +1,24 @@
 ## Getting and Cleaning Data July 2014 Course Project
 
-### How the script works
-
-**Preparation:**
+### Preparation
 
 You need to download and unzip the raw files in your working directory. Get the
 files at:
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-**Running the script**
+### How the script works
 
-- Copy the script run_analysis to your working directory, and run it using the
-source() command. Example:
-```{r, eval=FALSE}
-source("run_amalysis.R")
-```
 
 **What the script does**
 
 These are the project tasks required:
 
-1 Merges the training and the test sets to create one data set.
-2 Extracts only the measurements on the mean and standard deviation for each measurement. 
-3 Uses descriptive activity names to name the activities in the data set
-4 Appropriately labels the data set with descriptive variable names. 
-5 Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names. 
+5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
 
 This is how the script works (in parethesis see relation to project tasks):
@@ -51,5 +44,18 @@ in this order
 for each measurement), I kept only variables related to mean() and std(), as
 described in features_info.txt.
 
+**Running the script**
+
+- Copy the script run_analysis to your working directory, and run it using the
+source() command. Example:
+```{r, eval=FALSE}
+source("run_analysis.R")
+```
+
+**Script Results**
+The script will generate 2 files. The file to be submitted will have the name 
+SubmissionTidyData.txt.
+
+The file contains 180 rows, related to 6 activities X 30 subjects.
 
 
