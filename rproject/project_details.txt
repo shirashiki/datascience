@@ -21,3 +21,7 @@ Check:
 
 A layout of the filan file (there is a figure there)
 https://class.coursera.org/getdata-005/forum/thread?thread_id=23
+
+About step 5
+https://class.coursera.org/getdata-005/forum/thread?thread_id=244
+
