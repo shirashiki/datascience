@@ -51,7 +51,8 @@ source() command. Example:
 source("run_analysis.R")
 ```
 
-**Script Results**
+
+###Script Results
 The script will generate 2 files. The file to be submitted will have the name 
 SubmissionTidyData.txt.
 
