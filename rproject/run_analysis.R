@@ -1,7 +1,7 @@
 ## Getting and Cleaning Data July 2014
 #  Course Project
 
-## 2, 1, 3 
+## 2, 1, 3, 4 
 
 ## Tasks
 # 1     Merges the training and the test sets to create one data set.
@@ -69,8 +69,8 @@ projectTasks <- function() {
     colnames(features)[1] = "FeaturePosition"
     colnames(features)[2] = "FeatureName"
     
-    # defines features to keep
-    keeps <- grep("*-mean|-std*", features[,2])
+    # defines features to keep, matching -mean() and -std()
+    keeps <- grep("*-mean\\(|-std\\(*", features[,2])
     
     # Loads activity labels
     activityLabels <- read.table(file="./UCI HAR Dataset/activity_labels.txt",
@@ -97,7 +97,7 @@ projectTasks <- function() {
     # Project Tasks:
     # 2 - Extracts only the measurements on the mean and standard deviation 
     #     for each measurement.
-    trainingSet <- trainingSet[,keeps]
+    trainingSet <- trainingSet[, keeps] 
     
     # Merges to name each activity in the data set
     trainingSet <- cbind(trainingLabels, trainingSet)
@@ -127,7 +127,7 @@ projectTasks <- function() {
     # Project Tasks:
     # 2 - Extracts only the measurements on the mean and standard deviation 
     #     for each measurement.
-    testSet <- testSet[,keeps]
+    testSet <- testSet[, keeps] 
     
     # Merges to name each activity in the data set
     testSet <- cbind(testLabels, testSet)
@@ -158,33 +158,53 @@ projectTasks <- function() {
                                 all=TRUE)
     
     # Project Tasks:
-    # 4 - Appropriately labels the data set with descriptive variable names. 
-    
+    # 4 - Appropriately labels the data set with descriptive variable names.     
+
     # Drops remaining unwanted columns
     drops <- c("ActivityID")
     allData <- allData[,!(names(allData) %in% drops)]
     
     # Renames columns setting descriptive names
+    ## ZZZZZZZZZZZ
     
     
-    
-
-    summaryData <- aggregate(allData, 
-                        by=list(allData$ActivityName, allData$Subject),
-                        FUN=mean, 
-                        na.rm=TRUE)
-    
-    write.table(summaryData, file="./cleanData.txt",
+    # Writes the tidy dataset
+    write.table(allData, file="./FirstTidyData.txt",
                 append=FALSE,
                 sep="\t",
                 row.names=FALSE, 
                 col.names=TRUE )
     
-    #PENDING:
-    # We have 30 subjects in total, so no need to use SetName. Use only
-    # subject to aggregate
-    #- The final File has another format (see project desc item 5)
-
+    
+    # Project Tasks:
+    # 5 - Creates a second, independent tidy data set with the average of each 
+    #     variable for each activity and each subject.
+    
+    # Get the average, grouping by Activity and Subject
+    summaryData <- aggregate(allData, 
+                        by=list(allData$ActivityName, allData$Subject),
+                        FUN=mean, 
+                        na.rm=TRUE)
+    
+    # Adjusts column names
+    drops <- c("ActivityName", "Subject")
+    summaryData <- summaryData[,!(names(summaryData) %in% drops)]
+    names(summaryData)[names(summaryData)=="Group.1"] <- "ActivityName"
+    names(summaryData)[names(summaryData)=="Group.2"] <- "Subject"
+    
+    # Sorts by Activity and Subject
+    summaryData <- summaryData[with(summaryData, 
+                                    order(ActivityName, Subject)), ]
+    #drops <- c("row.names")
+    #summaryData <- summaryData[,!(names(summaryData) %in% drops)]
+    
+    # Writes the Second tidy dataset. This is the one I am submitting
+    write.table(summaryData, file="./SubmissionTidyData.txt",
+                append=FALSE,
+                sep="\t",
+                row.names=FALSE, 
+                col.names=TRUE )
+    
 }
 
 # Run the project tasks
