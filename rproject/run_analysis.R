@@ -89,8 +89,11 @@ projectTasks <- function() {
     colnames(trainingLabels)[1] <- "ID"
     
     # Merges activity and training labels
-    trainingActivities <- merge(trainingLabels, activityLabels, by.x="ID",
-                                by.y="ActivityID", all=TRUE)
+    trainingActivities <- merge(trainingLabels, activityLabels, 
+                                by.x="ID",
+                                by.y="ActivityID",
+                                sort=FALSE,
+                                all=TRUE)
     
     # Loads Training Set
     trainingSet <- read.table(file="./UCI HAR Dataset/train/X_train.txt",
@@ -127,8 +130,11 @@ projectTasks <- function() {
     colnames(testLabels)[1] <- "ID"
     
     # Merges activity and training labels
-    testActivities <- merge(testLabels, activityLabels, by.x="ID",
-                                by.y="ActivityID", all=TRUE)
+    testActivities <- merge(testLabels, activityLabels, 
+                                by.x="ID",
+                                by.y="ActivityID",
+                                sort=FALSE,
+                                all=TRUE)
     
     # Loads Test Set
     testSet <- read.table(file="./UCI HAR Dataset/test/X_test.txt",
@@ -170,6 +176,9 @@ projectTasks <- function() {
                         by=list(allData$Subject, allData$ActivityName),
                         FUN=mean, 
                         na.rm=TRUE)
+    
+    write.table(sum_DF, "./cleanData.txt", sep="\t", col.names = TRUE)
+    
     #PENDING:
     # We have 30 subjects in total, so no need to use SetName. Use only
     # subject to aggregate
