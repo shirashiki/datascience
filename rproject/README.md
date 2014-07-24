@@ -9,10 +9,7 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 ### How the script works
 
-
-**What the script does**
-
-These are the project tasks required:
+**Project tasks required**
 
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
@@ -20,8 +17,8 @@ These are the project tasks required:
 4. Appropriately labels the data set with descriptive variable names. 
 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-
-This is how the script works (in parethesis see relation to project tasks):
+**How the script works**
+(in parethesis see relation to project tasks)
 
 - Checks if the required raw files are in the correct place. If not, the script stops
 - Prepares Training Set (task 2)
@@ -34,7 +31,8 @@ This is how the script works (in parethesis see relation to project tasks):
 - Add the Activity labels to merged data frame (task 3)
 - Renames columns with meaningful names (task 4)
 - Saves the tidy dataset with all data to FirstTidyData.txt, in working directory
-- Saves the submission summary data set as SubmissionTidyData.txt in working directory.
+- Saves the submission summary data set as SubmissionTidyData.txt in 
+working directory (Task 5)
 
 Notes:
 
@@ -43,6 +41,7 @@ in this order
 - For task 2 (Extracts only the measurements on the mean and standard deviation 
 for each measurement), I kept only variables related to mean() and std(), as
 described in features_info.txt.
+- In the script source, check comments to see when project tasks were performed.
 
 **Running the script**
 
