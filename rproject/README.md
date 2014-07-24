@@ -7,6 +7,11 @@ files at:
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
+**After unzipping, your working directory needs to have a directory called 
+"UCI HAR Dataset".**
+
+
+
 ### How the script works
 
 **Project tasks required**
@@ -20,7 +25,8 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 **How the script works**
 (in parethesis see relation to project tasks)
 
-- Checks if the required raw files are in the correct place. If not, the script stops
+- Checks if the required raw files are in the correct place. If not, the script 
+stops. You need to have a directory called "UCI HAR Dataset" in your workspace.
 - Prepares Training Set (task 2)
     + Loads the Training Set, keeping only columns related to mean and standard deviation
     + Adds the Activity Names and Subject to Training Set
