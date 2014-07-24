@@ -86,14 +86,7 @@ projectTasks <- function() {
     # Loads Training labels
     trainingLabels <- read.table(file="./UCI HAR Dataset/train/y_train.txt",
                            header=FALSE, sep="")
-    colnames(trainingLabels)[1] <- "ID"
-    
-    # Merges activity and training labels
-    trainingActivities <- merge(trainingLabels, activityLabels, 
-                                by.x="ID",
-                                by.y="ActivityID",
-                                sort=FALSE,
-                                all=TRUE)
+    colnames(trainingLabels)[1] <- "ActivityID"
     
     # Loads Training Set
     trainingSet <- read.table(file="./UCI HAR Dataset/train/X_train.txt",
@@ -115,7 +108,7 @@ projectTasks <- function() {
     trainingSet <- cbind(trainingSubjects, trainingSet)
     
     # Merges to name each activity in the data set
-    trainingSet <- cbind(trainingActivities, trainingSet)
+    trainingSet <- cbind(trainingLabels, trainingSet)
     
     # Adds the name of the set, so we can merge Training and Test later
     SetName = rep("Training Set", nrow(trainingSet))
@@ -127,14 +120,7 @@ projectTasks <- function() {
     # Loads Test labels
     testLabels <- read.table(file="./UCI HAR Dataset/test/y_test.txt",
                                  header=FALSE, sep="")
-    colnames(testLabels)[1] <- "ID"
-    
-    # Merges activity and training labels
-    testActivities <- merge(testLabels, activityLabels, 
-                                by.x="ID",
-                                by.y="ActivityID",
-                                sort=FALSE,
-                                all=TRUE)
+    colnames(testLabels)[1] <- "ActivityID"
     
     # Loads Test Set
     testSet <- read.table(file="./UCI HAR Dataset/test/X_test.txt",
@@ -156,7 +142,7 @@ projectTasks <- function() {
     testSet <- cbind(testSubjects, testSet)
     
     # Merges to name each activity in the data set
-    testSet <- cbind(testActivities, testSet)
+    testSet <- cbind(testLabels, testSet)
     
     # Adds the name of the set, so we can merge Training and Test later
     SetName = rep("Test Set", nrow(testSet))
@@ -167,6 +153,11 @@ projectTasks <- function() {
     ## At this point we have Training and Test data frames prepared
     
     allData <- rbind(trainingSet, testSet)
+    allData <- merge(activityLabels, allData, 
+                                by.x="ActivityID",
+                                by.y="ActivityID",
+                                sort=FALSE,
+                                all=TRUE)
     
     
     ## need to tidy column names before generating final file
@@ -177,7 +168,9 @@ projectTasks <- function() {
                         FUN=mean, 
                         na.rm=TRUE)
     
-    write.table(sum_DF, "./cleanData.txt", sep="\t", col.names = TRUE)
+    write.table(sum_DF, file="./cleanData.txt",
+                append = FALSE,
+                sep="\t", col.names = TRUE)
     
     #PENDING:
     # We have 30 subjects in total, so no need to use SetName. Use only
