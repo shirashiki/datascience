@@ -5,6 +5,12 @@ The file contains the summary, mean value of the original variables related to
 mean or standard deviation. The summary is aggregated and sorted by activity and 
 subject.
 
+Other details:
+
+- HEADER: yes, in the first line of the file.
+- COLUMN SEPARATOR: tab (\t).
+
+
 ### Variables
 
 **What was changed in variable names**

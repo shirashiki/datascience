@@ -1,5 +1,14 @@
 ## Getting and Cleaning Data July 2014 Course Project
 
+### In this repository
+
+File | Description
+------------- | ----------------------------------
+run_analysis.R | script to generate tidy files
+CODEBOOK.md | the codebook containing tidy file details
+SubmissionTidyData.txt | the tidy file generated
+
+
 ### Preparation
 
 You need to download and unzip the raw files in your working directory. Get the
@@ -9,7 +18,6 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 **After unzipping, your working directory needs to have a directory called 
 "UCI HAR Dataset".**
-
 
 
 ### How the script works
@@ -63,6 +71,10 @@ The script will generate 2 files. The file to be submitted will have the name
 SubmissionTidyData.txt.
 
 The file contains 180 rows, related to 6 activities X 30 subjects. See the 
-Codebook for file details.
+Codebook for file details. 
 
+To load the file in R, use:
 
+```{r, eval=FALSE}
+tidydata <- read.table(file="./SubmissionTidyData.txt",header=TRUE)
+```
