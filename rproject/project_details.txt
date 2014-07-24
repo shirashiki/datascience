@@ -27,3 +27,12 @@ https://class.coursera.org/getdata-005/forum/thread?thread_id=244
 
 File size (final) around 255 kb
 https://class.coursera.org/getdata-005/forum/thread?thread_id=61
+
+
+Renaming data frame column
+http://www.cookbook-r.com/Manipulating_data/Renaming_columns_in_a_data_frame/
+
+Drop columns in data frame
+http://stackoverflow.com/questions/4605206/drop-columns-r-data-frame
+
+
