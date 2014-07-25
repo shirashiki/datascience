@@ -9,6 +9,23 @@ CODEBOOK.md | the codebook containing tidy file details
 SubmissionTidyData.txt | the tidy file generated
 
 
+### Why the submitted dataset is tidy
+The script run_analysis.R generates a submission file with the following 
+attributes:
+
+- Each variable is in one column.
+- Each observation is in one row.
+- The generated file has a header containing variable names.
+- Variable names were changed to be more human readable.
+- The result is in one file, which merges Activities, Subjects and Measurement.
+- The submission tidy dataset is aggregated and ordered by Activity and Subject, 
+in this order, as per requirements.
+- For task 2 (Extracts only the measurements on the mean and standard deviation 
+for each measurement), I kept only variables related to mean() and std(), as
+described in features_info.txt.
+- In the script source, check comments to see when project tasks were performed.
+
+
 ### Preparation
 
 You need to download and unzip the raw files in your working directory. Get the
@@ -30,7 +47,9 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 4. Appropriately labels the data set with descriptive variable names. 
 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-**How the script works**
+
+**Tasks in the script to generate tidy data**
+
 (in parethesis see relation to project tasks)
 
 - Checks if the required raw files are in the correct place. If not, the script 
@@ -48,14 +67,6 @@ stops. You need to have a directory called "UCI HAR Dataset" in your workspace.
 - Saves the submission summary data set as SubmissionTidyData.txt in 
 working directory (Task 5)
 
-Notes:
-
-- The submission tidy dataset is aggregated and ordered by Activity and Subject, 
-in this order.
-- For task 2 (Extracts only the measurements on the mean and standard deviation 
-for each measurement), I kept only variables related to mean() and std(), as
-described in features_info.txt.
-- In the script source, check comments to see when project tasks were performed.
 
 **Running the script**
 

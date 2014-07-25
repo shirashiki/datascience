@@ -5,10 +5,15 @@ The file contains the summary, mean value of the original variables related to
 mean or standard deviation. The summary is aggregated and sorted by activity and 
 subject.
 
+Each row contains one observation, so the number of rows in file is 
+equal to (number of activities) X (number of subjects).
+
+
 Other details:
 
-- HEADER: yes, in the first line of the file.
-- COLUMN SEPARATOR: tab (\t).
+- Header: the file contains a header in the first line of the file, so you can
+identify each variable.
+- Column separator: the columns are separated by tab (\t).
 
 
 ### Variables
