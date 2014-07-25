@@ -6,7 +6,6 @@ File | Description
 ------------- | ----------------------------------
 run_analysis.R | script to generate tidy files
 CODEBOOK.md | the codebook containing tidy file details
-SubmissionTidyData.txt | the tidy file generated
 
 
 ### Why the submitted dataset is tidy
